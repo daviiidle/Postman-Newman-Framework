@@ -1,6 +1,4 @@
 node_modules/
 reports/
-newman/
 *.log
 package-lock.json
-

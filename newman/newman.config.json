@@ -1,0 +1,12 @@
+{
+  "collection": "collections/placement-api.collection.json",
+  "environment": "environments/ci.postman_environment.json",
+  "iterationData": "data/placement-test-data.json",
+  "reporters": ["cli", "json"],
+  "reporter": {
+    "json": {
+      "export": "reports/newman-ci.json"
+    }
+  }
+}
+
