@@ -1,0 +1,15 @@
+[
+  {
+    "placementId": "PLC-1001",
+    "candidateId": "CAN-2001",
+    "role": "QA Automation Engineer",
+    "startDate": "2026-07-01"
+  },
+  {
+    "placementId": "PLC-1002",
+    "candidateId": "CAN-2002",
+    "role": "Senior Test Analyst",
+    "startDate": "2026-07-15"
+  }
+]
+

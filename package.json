@@ -1,0 +1,16 @@
+{
+  "name": "postman-newman-framework",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Source Postman/Newman API test assets consumed by the Postman Decoupling Framework.",
+  "scripts": {
+    "test": "npm run newman:ci",
+    "newman:local": "newman run collections/placement-api.collection.json -e environments/local.postman_environment.json -d data/placement-test-data.json --reporters cli,json --reporter-json-export reports/newman-local.json",
+    "newman:ci": "newman run collections/placement-api.collection.json -e environments/ci.postman_environment.json -d data/placement-test-data.json --reporters cli,json --reporter-json-export reports/newman-ci.json",
+    "inspect": "node scripts/list-assets.js"
+  },
+  "devDependencies": {
+    "newman": "^6.2.1"
+  }
+}
+

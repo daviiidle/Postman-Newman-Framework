@@ -1,0 +1,170 @@
+{
+  "info": {
+    "name": "Placement API",
+    "description": "Example Postman collection representing an existing Newman-based Placement API test suite.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "placementId",
+      "value": "PLC-1001"
+    },
+    {
+      "key": "candidateId",
+      "value": "CAN-2001"
+    }
+  ],
+  "item": [
+    {
+      "name": "Placements",
+      "item": [
+        {
+          "name": "Get placement by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "x-correlation-id",
+                "value": "{{$guid}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/placements/{{placementId}}"
+            }
+          },
+          "response": [
+            {
+              "name": "Placement found",
+              "code": 200,
+              "body": "{ \"id\": \"PLC-1001\", \"candidateId\": \"CAN-2001\", \"status\": \"ACTIVE\", \"role\": \"QA Automation Engineer\" }"
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', function () { pm.response.to.have.status(200); });",
+                  "pm.test('placement id matches', function () { pm.expect(pm.response.json().id).to.eql(pm.variables.get('placementId')); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Create placement",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/placements"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"candidateId\": \"{{candidateId}}\", \"role\": \"{{role}}\", \"startDate\": \"{{startDate}}\" }"
+            }
+          },
+          "response": [
+            {
+              "name": "Placement created",
+              "code": 201,
+              "body": "{ \"id\": \"PLC-1002\", \"candidateId\": \"CAN-2001\", \"status\": \"CREATED\", \"role\": \"QA Automation Engineer\" }"
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', function () { pm.response.to.have.status(201); });",
+                  "pm.test('created placement has id', function () { pm.expect(pm.response.json().id).to.exist; });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Cancel placement",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/placements/{{placementId}}/status"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"status\": \"CANCELLED\", \"reason\": \"Candidate withdrew\" }"
+            }
+          },
+          "response": [
+            {
+              "name": "Placement cancelled",
+              "code": 200,
+              "body": "{ \"id\": \"PLC-1001\", \"status\": \"CANCELLED\", \"reason\": \"Candidate withdrew\" }"
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', function () { pm.response.to.have.status(200); });",
+                  "pm.test('placement is cancelled', function () { pm.expect(pm.response.json().status).to.eql('CANCELLED'); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Candidates",
+      "item": [
+        {
+          "name": "Get candidate profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/candidates/{{candidateId}}"
+            }
+          },
+          "response": [
+            {
+              "name": "Candidate found",
+              "code": 200,
+              "body": "{ \"id\": \"CAN-2001\", \"firstName\": \"Ada\", \"lastName\": \"Lovelace\", \"availability\": \"IMMEDIATE\" }"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
