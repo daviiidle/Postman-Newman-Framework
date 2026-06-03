@@ -31,6 +31,12 @@ jobs:
       - name: Inspect assets
         run: npm run inspect
 
+      - name: Start mock Placement API
+        run: |
+          npm run mock-api &
+          sleep 2
+          curl --fail http://localhost:4010/health
+
       - name: Run Newman
         run: npm run newman:ci
 
@@ -40,4 +46,3 @@ jobs:
         with:
           name: newman-report
           path: reports/
-

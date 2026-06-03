@@ -33,7 +33,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/placements/{{placementId}}"
+              "raw": "{{baseUrl}}/placements/{{placementId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["placements", "{{placementId}}"]
             }
           },
           "response": [
@@ -71,7 +73,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/placements"
+              "raw": "{{baseUrl}}/placements",
+              "host": ["{{baseUrl}}"],
+              "path": ["placements"]
             },
             "body": {
               "mode": "raw",
@@ -109,7 +113,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/placements/{{placementId}}/status"
+              "raw": "{{baseUrl}}/placements/{{placementId}}/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["placements", "{{placementId}}", "status"]
             },
             "body": {
               "mode": "raw",
@@ -152,7 +158,9 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/candidates/{{candidateId}}"
+              "raw": "{{baseUrl}}/candidates/{{candidateId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["candidates", "{{candidateId}}"]
             }
           },
           "response": [
@@ -167,4 +175,3 @@
     }
   ]
 }
-

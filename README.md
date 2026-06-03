@@ -36,6 +36,12 @@ Run the Newman suite:
 npm run newman:ci
 ```
 
+Start the local mock API used by CI:
+
+```bash
+npm run mock-api
+```
+
 Run against local environment settings:
 
 ```bash
@@ -50,4 +56,3 @@ npm run newman:local
 dotnet run --project src/PDF.Cli -- inspect --source external/Postman-Newman-Framework
 dotnet run --project src/PDF.Cli -- import --source external/Postman-Newman-Framework --output output/generated
 ```
-
